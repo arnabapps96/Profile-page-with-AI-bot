@@ -8,7 +8,7 @@ const getAccessToken = async () => {
   const refresh_token = process.env.SPOTIFY_REFRESH_TOKEN;
 
   if (!client_id || !client_secret || !refresh_token) {
-    throw new Error('Spotify environment variables are missing');
+    throw new Error(`Missing vars: ID:${!!client_id} SEC:${!!client_secret} TOK:${!!refresh_token}`);
   }
 
   const basic = Buffer.from(`${client_id}:${client_secret}`).toString('base64');
@@ -27,7 +27,7 @@ const getAccessToken = async () => {
 
   if (!response.ok) {
     const errorData = await response.json();
-    throw new Error(`Failed to get access token: ${JSON.stringify(errorData)}`);
+    throw new Error(`Spotify Token Error: ${response.status} ${JSON.stringify(errorData)}`);
   }
 
   return response.json();
@@ -48,7 +48,6 @@ export const getNowPlaying = async () => {
       songData = await response.json();
     }
 
-    // If nothing is playing (204), error, or paused (!is_playing), fetch recently played
     if (response.status === 204 || response.status > 400 || !songData || !songData.is_playing) {
       const recentResponse = await fetch(RECENTLY_PLAYED_ENDPOINT, {
         headers: {
@@ -57,13 +56,14 @@ export const getNowPlaying = async () => {
       });
 
       if (!recentResponse.ok) {
-        return null;
+        throw new Error(`Recent Tracks Error: ${recentResponse.status}`);
       }
       
       const recentData = await recentResponse.json();
-      if (!recentData.items || recentData.items.length === 0) return null;
+      if (!recentData.items || recentData.items.length === 0) {
+        throw new Error('No recent items found');
+      }
       
-      // De-duplicate by track ID
       const uniqueTracks: any[] = [];
       const seenIds = new Set();
       
@@ -95,8 +95,8 @@ export const getNowPlaying = async () => {
       albumImageUrl: songData.item.album.images[0].url,
       songUrl: songData.item.external_urls.spotify,
     };
-  } catch (error) {
+  } catch (error: any) {
     console.error('getNowPlaying Error:', error);
-    return null;
+    return { error: true, message: error.message };
   }
 };
