@@ -8,12 +8,17 @@ export async function GET() {
     const song = await getNowPlaying();
 
     if (!song) {
-      return NextResponse.json({ isPlaying: false });
+      // This happens if getNowPlaying returns null (error or no tracks)
+      return NextResponse.json({ isPlaying: false, status: 'No song found or error' });
     }
 
     return NextResponse.json(song);
-  } catch (error) {
-    console.error('Spotify API Error:', error);
-    return NextResponse.json({ isPlaying: false, error: 'Failed to fetch' }, { status: 500 });
+  } catch (error: any) {
+    console.error('Spotify API Route Error:', error);
+    return NextResponse.json({ 
+      isPlaying: false, 
+      error: 'Failed to fetch',
+      message: error.message 
+    }, { status: 500 });
   }
 }
