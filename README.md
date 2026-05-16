@@ -6,8 +6,9 @@ A professional, minimalist, and high-impact portfolio template built with **Next
 
 - **Digital Twin AI Chatbot**: A custom-grounded AI assistant powered by Gemini Flash that knows your career history.
 - **Quantified Impact Cards**: Beautifully animated counters for highlighting your key achievements.
+- **Spotify Integration**: Live playback status showing what you're listening to (or your last 5 unique tracks).
+- **Personal Log**: Curated sections for travel history and reading interests.
 - **Responsive Design**: Optimized for everything from ultra-wide monitors to mobile devices.
-- **Premium Aesthetics**: Minimalist light theme with sophisticated typography and micro-animations.
 - **Modern Tech Stack**: Next.js 15 (App Router), React 19, and TypeScript.
 
 ---
@@ -22,13 +23,26 @@ npm install
 ```
 
 ### 2. Environment Setup
-Create a `.env.local` file in the root directory and add your Gemini API key:
+Create a `.env.local` file in the root directory and add your API keys:
 ```env
-GEMINI_API_KEY=your_actual_api_key_here
+# AI Chatbot
+GEMINI_API_KEY=your_gemini_api_key
+
+# Spotify Integration
+SPOTIFY_CLIENT_ID=your_spotify_client_id
+SPOTIFY_CLIENT_SECRET=your_spotify_client_secret
+SPOTIFY_REFRESH_TOKEN=your_spotify_refresh_token
 ```
 Get your key from the [Google AI Studio](https://aistudio.google.com/).
 
-### 3. Run Locally
+### 3. Generate Spotify Token (One-time)
+To display your Spotify playback, run the following script and follow the instructions:
+```bash
+node scripts/get_spotify_token.mjs
+```
+Add the outputted `SPOTIFY_REFRESH_TOKEN` to your `.env.local`.
+
+### 4. Run Locally
 ```bash
 npm run dev
 ```

@@ -1,6 +1,7 @@
 'use client';
 import { useState, useEffect, useRef } from 'react';
 import Chatbot, { ChatInterface } from '@/components/Chatbot';
+import PersonalSection from '@/components/PersonalSection';
 
 const Counter = ({ value }: { value: string }) => {
   const [displayValue, setDisplayValue] = useState(0);
@@ -601,6 +602,7 @@ export default function Home() {
           </div>
         </div>
       </section>
+      <PersonalSection />
       <Chatbot />
     </main>
   )

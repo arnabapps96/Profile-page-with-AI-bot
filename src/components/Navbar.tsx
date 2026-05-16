@@ -39,6 +39,7 @@ export default function Navbar() {
           <li><a href="#about" className="nav-link" onClick={handleLinkClick}>About</a></li>
           <li><a href="#experience" className="nav-link" onClick={handleLinkClick}>Experience</a></li>
           <li><a href="#skills" className="nav-link" onClick={handleLinkClick}>Skills</a></li>
+          <li><a href="#personal" className="nav-link" onClick={handleLinkClick}>Personal</a></li>
           <li><a href="#testimonials" className="nav-link" onClick={handleLinkClick}>Testimonials</a></li>
           <li><a href="mailto:arnab.apps96@gmail.com" className="nav-contact" onClick={handleLinkClick}>Contact</a></li>
         </ul>
