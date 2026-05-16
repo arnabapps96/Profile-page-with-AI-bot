@@ -189,6 +189,11 @@ const data = {
 };
 
 export default function Home() {
+  useEffect(() => {
+    // Scroll to top on mount
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <main>
       {/* Hero Section */}
