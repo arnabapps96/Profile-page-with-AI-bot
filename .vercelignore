@@ -1,0 +1,25 @@
+# Dependencies
+node_modules/
+.next/
+.vercel/
+
+# Work Folders (Large Assets)
+LTH Content work/
+LTH*
+NGS/
+MIS/
+BRM/
+*.xlsx
+*.pdf
+*.mp4
+*.mov
+*.zip
+*.pptx
+
+# Keep specific public assets
+!public/*.pdf
+
+# Misc
+.DS_Store
+.env*
+*.log

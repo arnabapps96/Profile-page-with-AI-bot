@@ -1,0 +1,49 @@
+# dependencies
+node_modules/
+.pnp/
+.pnp.*
+.yarn/*
+
+# testing
+coverage/
+
+# next.js
+.next/
+out/
+
+# production
+build/
+
+# vercel
+.vercel/
+
+# Work Folders (Large Assets)
+LTH Content work/
+LTH*
+NGS/
+MIS/
+BRM/
+*.xlsx
+*.pdf
+*.mp4
+*.mov
+*.zip
+*.pptx
+
+# Keep specific public assets
+# !public/*.pdf (Removed to protect personal CV)
+public/profile.jpeg
+public/cv.pdf
+public/vitality_real_dashboard.png
+
+# env files
+.env*
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+# Misc
+.DS_Store
+*.log
+*.pem
